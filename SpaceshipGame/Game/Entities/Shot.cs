@@ -58,7 +58,7 @@
             get => _speed;
             set
             {
-                if (value > 1 && value <= 5)
+                if (value >= 1 && value <= 5)
                 {
                     _speed = value;
                 }

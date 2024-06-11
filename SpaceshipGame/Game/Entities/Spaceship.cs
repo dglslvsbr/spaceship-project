@@ -36,7 +36,7 @@ namespace SpaceshipGame.Game.Entities
                 }
                 catch (ArgumentException e)
                 {
-                    throw new IOException("Erro ao alterar imagem: " + e.Message, e);
+                    throw new ArgumentException("Erro ao alterar imagem: " + e.Message, e);
                 }
             }
         }
@@ -80,7 +80,7 @@ namespace SpaceshipGame.Game.Entities
             get => _speed;
             set
             {
-                if (value > 1 && value <= 5)
+                if (value >= 1 && value <= 5)
                 {
                     _speed = value;
                 }
