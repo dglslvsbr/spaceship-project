@@ -12,6 +12,7 @@ namespace SpaceshipGame.Game.Views
         private readonly Movement _movement;
         private readonly ManageAsteroids _manageAsteroids;
         private readonly ManageShots _manageShots;
+        private readonly ManageCollisions _manageCollisions;
 
         private readonly System.Windows.Forms.Timer Timer;
 
@@ -22,6 +23,7 @@ namespace SpaceshipGame.Game.Views
             _manageShots = new();
             _movement = new(_spaceship, _manageShots);
             _manageAsteroids = new();
+            _manageCollisions = new(_spaceship, _manageShots, _manageAsteroids);
 
             Timer = new()
             {
@@ -64,6 +66,7 @@ namespace SpaceshipGame.Game.Views
             _movement.AutomaticMovement();
             _manageAsteroids.Movement();
             _manageShots.AutomaticShots();
+            _manageCollisions.CheckCollisions();
         }
     }
 }

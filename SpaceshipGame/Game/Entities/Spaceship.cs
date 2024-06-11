@@ -9,6 +9,7 @@ namespace SpaceshipGame.Game.Entities
         private float _y;
         private const int _size = 48;
         private float _speed;
+        private int _collisions = 5;
 
         public Spaceship(string path, float x, float y, float speed)
         {
@@ -79,6 +80,18 @@ namespace SpaceshipGame.Game.Entities
                 else
                 {
                     throw new ArgumentException("A velocidade deve estar entre 1 e 5.");
+                }
+            }
+        }
+
+        public int Collisions
+        {
+            get => _collisions;
+            set
+            {
+                if (value >= 0 && value <= 5)
+                {
+                    _collisions = value;
                 }
             }
         }
