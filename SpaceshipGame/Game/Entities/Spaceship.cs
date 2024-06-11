@@ -46,7 +46,7 @@ namespace SpaceshipGame.Game.Entities
             get => _x;
             set
             {
-                if (value >= 0 && value <= GameScreen.MapWidth - Size)
+                if (value >= 0 && value <= GameScreen.MapWidth - Size - 15)
                 {
                     _x = value;
                 }
@@ -58,7 +58,7 @@ namespace SpaceshipGame.Game.Entities
             get => _y;
             set
             {
-                if (value >= 0 && value <= GameScreen.MapHeight - Size)
+                if (value >= 0 && value <= GameScreen.MapHeight - Size - 15)
                 {
                     _y = value;
                 }

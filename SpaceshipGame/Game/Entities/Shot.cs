@@ -51,7 +51,7 @@
             set => _y = value;
         }
 
-        public int Size => _size;
+        public static int Size => _size;
 
         public float Speed
         {

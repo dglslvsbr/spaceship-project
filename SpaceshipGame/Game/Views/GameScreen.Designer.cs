@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameScreen));
             Score = new Label();
-            Asteroid = new PictureBox();
+            Asteroide = new PictureBox();
             Nave = new PictureBox();
             Count_Collision = new Label();
             Count_Asteroids = new Label();
-            ((System.ComponentModel.ISupportInitialize)Asteroid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Asteroide).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Nave).BeginInit();
             SuspendLayout();
             // 
@@ -50,15 +50,15 @@
             Score.TabIndex = 0;
             Score.Text = "Score: 0";
             // 
-            // Asteroid
+            // Asteroide
             // 
-            Asteroid.BackColor = Color.DarkBlue;
-            Asteroid.Image = (Image)resources.GetObject("Asteroid.Image");
-            Asteroid.Location = new Point(437, -1);
-            Asteroid.Name = "Asteroid";
-            Asteroid.Size = new Size(49, 50);
-            Asteroid.TabIndex = 1;
-            Asteroid.TabStop = false;
+            Asteroide.BackColor = Color.DarkBlue;
+            Asteroide.Image = (Image)resources.GetObject("Asteroide.Image");
+            Asteroide.Location = new Point(437, -1);
+            Asteroide.Name = "Asteroide";
+            Asteroide.Size = new Size(49, 50);
+            Asteroide.TabIndex = 1;
+            Asteroide.TabStop = false;
             // 
             // Nave
             // 
@@ -103,7 +103,7 @@
             Controls.Add(Count_Asteroids);
             Controls.Add(Count_Collision);
             Controls.Add(Nave);
-            Controls.Add(Asteroid);
+            Controls.Add(Asteroide);
             Controls.Add(Score);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -111,7 +111,7 @@
             Name = "GameScreen";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Spaceship Game";
-            ((System.ComponentModel.ISupportInitialize)Asteroid).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Asteroide).EndInit();
             ((System.ComponentModel.ISupportInitialize)Nave).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -120,7 +120,7 @@
         #endregion
 
         private Label Score;
-        private PictureBox Asteroid;
+        private PictureBox Asteroide;
         private PictureBox Nave;
         private Label Count_Collision;
         private Label Count_Asteroids;
