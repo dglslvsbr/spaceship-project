@@ -49,10 +49,10 @@ namespace SpaceshipGame.Game.Controllers
         {
             foreach (var obj in _asteroids)
             {
-                obj.Y++;
+                obj.Y += obj.Speed;
             }
-            NewAsteroids();
             Remove();
+            NewAsteroids();
         }
 
         private void NewAsteroids()

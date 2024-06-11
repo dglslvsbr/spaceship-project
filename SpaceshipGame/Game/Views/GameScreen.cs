@@ -11,6 +11,7 @@ namespace SpaceshipGame.Game.Views
         private readonly Spaceship _spaceship;
         private readonly Movement _movement;
         private readonly ManageAsteroids _manageAsteroids;
+        private readonly ManageShots _manageShots;
 
         private readonly System.Windows.Forms.Timer Timer;
 
@@ -18,7 +19,8 @@ namespace SpaceshipGame.Game.Views
         {
             InitializeComponent();
             _spaceship = new(@"Images/48xNave-Espacial.ico", 225, 410, 2);
-            _movement = new(_spaceship);
+            _manageShots = new();
+            _movement = new(_spaceship, _manageShots);
             _manageAsteroids = new();
 
             Timer = new()
@@ -48,6 +50,12 @@ namespace SpaceshipGame.Game.Views
             {
                 e.Graphics.DrawImage(obj.Image, obj.X, obj.Y, Asteroid.Size, Asteroid.Size);
             }
+
+            // Disparos
+            foreach (var obj in _manageShots.List())
+            {
+                e.Graphics.DrawImage(obj.Image, obj.X, obj.Y, Shot.Size, Shot.Size);
+            }
         }
 
         private void Time(object sender, EventArgs e)
@@ -55,6 +63,7 @@ namespace SpaceshipGame.Game.Views
             Refresh();
             _movement.AutomaticMovement();
             _manageAsteroids.Movement();
+            _manageShots.AutomaticShots();
         }
     }
 }

@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="Images\32xBala.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Images\48xAsteroide.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
