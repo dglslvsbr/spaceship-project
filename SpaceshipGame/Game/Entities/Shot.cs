@@ -1,16 +1,14 @@
-﻿using SpaceshipGame.Game.Views;
-
-namespace SpaceshipGame.Game.Entities
+﻿namespace SpaceshipGame.Game.Entities
 {
-    internal class Spaceship
+    internal class Shot
     {
         private Image _image;
         private float _x;
         private float _y;
-        private const int _size = 48;
+        private const int _size = 5;
         private float _speed;
 
-        public Spaceship(string path, float x, float y, float speed)
+        public Shot(string path, float x, float y, float speed)
         {
             try
             {
@@ -36,7 +34,7 @@ namespace SpaceshipGame.Game.Entities
                 }
                 catch (ArgumentException e)
                 {
-                    throw new IOException("Erro ao alterar imagem: " + e.Message, e);
+                    throw new ArgumentException("Erro ao alterar imagem: " + e.Message, e);
                 }
             }
         }
@@ -44,36 +42,16 @@ namespace SpaceshipGame.Game.Entities
         public float X
         {
             get => _x;
-            set
-            {
-                if (value >= 0 && value <= GameScreen.MapWidth - Size)
-                {
-                    _x = value;
-                }
-                else
-                {
-                    throw new ArgumentException($"O valor deve estar entre 0 e {GameScreen.MapWidth}");
-                }
-            }
+            set => _x = value;
         }
 
         public float Y
         {
             get => _y;
-            set
-            {
-                if (value >= 0 && value <= GameScreen.MapHeight - Size)
-                {
-                    _y = value;
-                }
-                else
-                {
-                    throw new ArgumentException($"O valor deve estar entre 0 e {GameScreen.MapHeight}");
-                }
-            }
+            set => _y = value;
         }
 
-        public static int Size => _size;
+        public int Size => _size;
 
         public float Speed
         {

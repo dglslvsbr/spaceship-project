@@ -1,8 +1,6 @@
-﻿using SpaceshipGame.Game.Views;
-
-namespace SpaceshipGame.Game.Entities
+﻿namespace SpaceshipGame.Game.Entities
 {
-    internal class Spaceship
+    internal class Asteroid
     {
         private Image _image;
         private float _x;
@@ -10,7 +8,7 @@ namespace SpaceshipGame.Game.Entities
         private const int _size = 48;
         private float _speed;
 
-        public Spaceship(string path, float x, float y, float speed)
+        public Asteroid(string path, float x, float y, float speed)
         {
             try
             {
@@ -44,33 +42,13 @@ namespace SpaceshipGame.Game.Entities
         public float X
         {
             get => _x;
-            set
-            {
-                if (value >= 0 && value <= GameScreen.MapWidth - Size)
-                {
-                    _x = value;
-                }
-                else
-                {
-                    throw new ArgumentException($"O valor deve estar entre 0 e {GameScreen.MapWidth}");
-                }
-            }
+            set => _x = value;
         }
 
         public float Y
         {
             get => _y;
-            set
-            {
-                if (value >= 0 && value <= GameScreen.MapHeight - Size)
-                {
-                    _y = value;
-                }
-                else
-                {
-                    throw new ArgumentException($"O valor deve estar entre 0 e {GameScreen.MapHeight}");
-                }
-            }
+            set => _y = value;
         }
 
         public static int Size => _size;

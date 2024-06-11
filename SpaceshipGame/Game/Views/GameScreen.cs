@@ -10,6 +10,7 @@ namespace SpaceshipGame.Game.Views
         public GameScreen()
         {
             InitializeComponent();
+            Spaceship spaceship = new(@"Images/48xNaved-Esdpacial.ico", 100, 100, 1f);
         }
     }
 }
