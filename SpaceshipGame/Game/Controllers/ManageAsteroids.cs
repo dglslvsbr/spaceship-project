@@ -7,12 +7,15 @@ namespace SpaceshipGame.Game.Controllers
     {
         private readonly List<Asteroid> _asteroids = new();
         private int _quantidade = 5;
+        private int _asteroidPassed;
 
         public ManageAsteroids()
         {
         }
 
         public List<Asteroid> List() => _asteroids;
+
+        public int AsteroidPassed => _asteroidPassed;
 
         public void Generate()
         {
@@ -53,6 +56,7 @@ namespace SpaceshipGame.Game.Controllers
             }
             Remove();
             NewAsteroids();
+            CheckIfTheAsteroidPassed();
         }
 
         private void NewAsteroids()
@@ -69,6 +73,18 @@ namespace SpaceshipGame.Game.Controllers
             {
                 if (_asteroids[i].Y > 510)
                 {
+                    _asteroids.RemoveAt(i);
+                }
+            }
+        }
+
+        private void CheckIfTheAsteroidPassed()
+        {
+            for (int i = _asteroids.Count - 1; i >= 0; i--)
+            {
+                if (_asteroids[i].Y > 500)
+                {
+                    _asteroidPassed++;
                     _asteroids.RemoveAt(i);
                 }
             }

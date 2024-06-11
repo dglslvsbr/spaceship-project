@@ -9,7 +9,7 @@ namespace SpaceshipGame.Game.Entities
         private float _y;
         private const int _size = 48;
         private float _speed;
-        private int _collisions = 5;
+        private int _collisions;
 
         public Spaceship(string path, float x, float y, float speed)
         {

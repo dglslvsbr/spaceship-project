@@ -1,5 +1,4 @@
 ﻿using SpaceshipGame.Game.Entities;
-using System.Reflection.Metadata.Ecma335;
 
 namespace SpaceshipGame.Game.Controllers
 {
@@ -50,12 +49,13 @@ namespace SpaceshipGame.Game.Controllers
                 if (IsCollision(_spaceship, asteroids[i]))
                 {
                     asteroids.RemoveAt(i);
+                    _spaceship.Collisions++;
                 }
             }
            
         }
 
-        private bool IsCollision(Shot shot, Asteroid asteroid)
+        private static bool IsCollision(Shot shot, Asteroid asteroid)
         {
             return shot.X + Shot.Size >= asteroid.X &&
                    shot.X <= asteroid.X + Asteroid.Size &&
@@ -63,13 +63,12 @@ namespace SpaceshipGame.Game.Controllers
                    shot.Y <= asteroid.Y + Asteroid.Size;
         }
 
-        private bool IsCollision(Spaceship spaceship, Asteroid asteroid)
+        private static bool IsCollision(Spaceship spaceship, Asteroid asteroid)
         {
             return spaceship.X + Spaceship.Size >= asteroid.X &&
                    spaceship.X <= asteroid.X + Asteroid.Size &&
                    spaceship.Y + Spaceship.Size >= asteroid.Y &&
                    spaceship.Y <= asteroid.Y + Asteroid.Size;
         }
-      
     }
 }
