@@ -9,10 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Game\Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Images\48xAsteroide.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

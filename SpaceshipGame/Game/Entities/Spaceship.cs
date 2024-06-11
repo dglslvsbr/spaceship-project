@@ -50,10 +50,6 @@ namespace SpaceshipGame.Game.Entities
                 {
                     _x = value;
                 }
-                else
-                {
-                    throw new ArgumentException($"O valor deve estar entre 0 e {GameScreen.MapWidth}");
-                }
             }
         }
 
@@ -65,10 +61,6 @@ namespace SpaceshipGame.Game.Entities
                 if (value >= 0 && value <= GameScreen.MapHeight - Size)
                 {
                     _y = value;
-                }
-                else
-                {
-                    throw new ArgumentException($"O valor deve estar entre 0 e {GameScreen.MapHeight}");
                 }
             }
         }
@@ -90,5 +82,8 @@ namespace SpaceshipGame.Game.Entities
                 }
             }
         }
+
+        public void MoveLeft() => X -= Speed;
+        public void MoveRight() => X += Speed;
     }
 }
