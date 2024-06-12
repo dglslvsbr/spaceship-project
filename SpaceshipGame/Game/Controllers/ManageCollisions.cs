@@ -7,13 +7,18 @@ namespace SpaceshipGame.Game.Controllers
         private readonly Spaceship _spaceship;
         private readonly ManageShots _manageShots;
         private readonly ManageAsteroids _manageAsteroids;
+        private readonly Label _countCollision;
+        private readonly Label _score;
 
 
-        public ManageCollisions(Spaceship spaceship, ManageShots manageShots, ManageAsteroids manageAsteroids)
+        public ManageCollisions(Spaceship spaceship, ManageShots manageShots,
+               ManageAsteroids manageAsteroids, Label countCollision, Label score)
         {
             _spaceship = spaceship;
             _manageShots = manageShots;
             _manageAsteroids = manageAsteroids;
+            _countCollision = countCollision;
+            _score = score;
 
         }
 
@@ -35,10 +40,17 @@ namespace SpaceshipGame.Game.Controllers
                     {
                         shots.RemoveAt(i);
                         asteroids.RemoveAt(j);
+                        _manageShots.Placar += 10;
+                        IncreasePlacar();
                         break;
                     }
                 }
             }
+        }
+
+        private void IncreasePlacar()
+        {
+            _score.Text = _manageShots.Placar.ToString();
         }
 
         private void CheckSpaceshipCollision()
@@ -48,8 +60,9 @@ namespace SpaceshipGame.Game.Controllers
             {
                 if (IsCollision(_spaceship, asteroids[i]))
                 {
-                    asteroids.RemoveAt(i);
                     _spaceship.Collisions++;
+                    _countCollision.Text = _spaceship.Collisions.ToString();
+                    asteroids.RemoveAt(i);
                 }
             }
            

@@ -16,6 +16,7 @@ namespace SpaceshipGame.Game.Controllers
 
         public void Move(object sender, KeyEventArgs e)
         {
+            var list = _manageShots.List();
             switch (e.KeyCode)
             {
                 case Keys.A:
@@ -25,8 +26,7 @@ namespace SpaceshipGame.Game.Controllers
                     _direction = 'D';
                     break;
                 case Keys.W:
-                    var list = _manageShots.List();
-                    list.Add(new Shot(@"Images/32xBala.png", _spaceship.X + 21, _spaceship.Y, 2));
+                    list.Add(new Shot(@"Images/32xBala.png", _spaceship.X + 21, _spaceship.Y));
                     break;
             }
         }

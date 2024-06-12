@@ -6,9 +6,8 @@
         private float _x;
         private float _y;
         private const int _size = 48;
-        private float _speed;
 
-        public Asteroid(string path, float x, float y, float speed)
+        public Asteroid(string path, float x, float y)
         {
             try
             {
@@ -20,7 +19,6 @@
             }
             X = x;
             Y = y;
-            Speed = speed;
         }
 
         public Image Image
@@ -52,21 +50,5 @@
         }
 
         public static int Size => _size;
-
-        public float Speed
-        {
-            get => _speed;
-            set
-            {
-                if (value >= 1 && value <= 5)
-                {
-                    _speed = value;
-                }
-                else
-                {
-                    throw new ArgumentException("A velocidade deve estar entre 1 e 5.");
-                }
-            }
-        }
     }
 }

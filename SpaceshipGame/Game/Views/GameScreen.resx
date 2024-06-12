@@ -121,7 +121,7 @@
   <data name="Asteroide.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAECRJREFUaEPtWQlYVeW63iCaWdbRq2adnNObdcpQcB4S1HAus8xZy1TUq2iapKIh
+        vAAADrwBlbxySQAAECRJREFUaEPtWQlYVeW63iCaWdbRq2adnNObdcpQcB4S1HAus8xZy1TUq2iapKIh
         pKCm5FAOOZU4oOCIiYJHFBAUESIZRUCcQJAUEHTvtb/7vj977bZl92pP9znn3Of8z/Ox1l7rH97v+99v
         +BeGf7f/z01EHiZ2FvnNu3+a9itgBOtgEQX80KEDfG5v85z3D4z7h7RfgdCBK9BsNWvWNDg7OznUrVvH
         vkGDFw0vvdTMtn8Vi1if/Z8120UeIsqyFRUV9snJyYaTJ09WN5lM7+DZVkgC5BIkDXIKsgEytqio6EVc
@@ -196,7 +196,7 @@
   <data name="Nave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAEBFJREFUaEPNWQl0Tef2vxK0+ihFSMxDElNMRXlt1ZCQeZaBICKKRFBEJBIV9FUp
+        vAAADrwBlbxySQAAEBFJREFUaEPNWQl0Tef2vxK0+ihFSMxDElNMRXlt1ZCQeZaBICKKRFBEJBIV9FUp
         qlrVlqWDodV6r+blmSUyGYJEkJREEiRqLtpy7r37/X5f7o2UeI8u/z9nrb3ul3O+s/f+fXs+0T3Ny8bO
         S9fA1tNMVUCWJuK6/NlzedVvfl9BEBW2qPA31+UgrOyeQxBm5WzaeFep2Xigha5Kd52Nvfd80Ic6XUfd
         3xoNtMD6Poh2/qY3n4OrovIv2Qyw0Omq6xraea2s09xVSHj2NffVsB7wJxDPxaWUae1B5XWvNHe11L3Q

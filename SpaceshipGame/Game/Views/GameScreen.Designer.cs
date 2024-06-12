@@ -29,26 +29,27 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameScreen));
-            Score = new Label();
+            Inf_score = new Label();
             Asteroide = new PictureBox();
             Nave = new PictureBox();
             Count_Collision = new Label();
             Count_Asteroids = new Label();
+            Score = new Label();
             ((System.ComponentModel.ISupportInitialize)Asteroide).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Nave).BeginInit();
             SuspendLayout();
             // 
-            // Score
+            // Inf_score
             // 
-            Score.AutoSize = true;
-            Score.BackColor = Color.DarkBlue;
-            Score.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            Score.ForeColor = Color.Yellow;
-            Score.Location = new Point(201, 9);
-            Score.Name = "Score";
-            Score.Size = new Size(88, 22);
-            Score.TabIndex = 0;
-            Score.Text = "Score: 0";
+            Inf_score.AutoSize = true;
+            Inf_score.BackColor = Color.DarkBlue;
+            Inf_score.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            Inf_score.ForeColor = Color.Yellow;
+            Inf_score.Location = new Point(200, 9);
+            Inf_score.Name = "Inf_score";
+            Inf_score.Size = new Size(77, 22);
+            Inf_score.TabIndex = 0;
+            Inf_score.Text = "Score: ";
             // 
             // Asteroide
             // 
@@ -94,17 +95,29 @@
             Count_Asteroids.Text = "0";
             Count_Asteroids.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // Score
+            // 
+            Score.AutoSize = true;
+            Score.BackColor = Color.DarkBlue;
+            Score.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            Score.ForeColor = Color.Yellow;
+            Score.Location = new Point(266, 9);
+            Score.Name = "Score";
+            Score.Size = new Size(0, 22);
+            Score.TabIndex = 5;
+            // 
             // GameScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(484, 461);
+            Controls.Add(Score);
             Controls.Add(Count_Asteroids);
             Controls.Add(Count_Collision);
             Controls.Add(Nave);
             Controls.Add(Asteroide);
-            Controls.Add(Score);
+            Controls.Add(Inf_score);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -119,10 +132,11 @@
 
         #endregion
 
-        private Label Score;
+        private Label Inf_score;
         private PictureBox Asteroide;
         private PictureBox Nave;
         private Label Count_Collision;
         private Label Count_Asteroids;
+        private Label Score;
     }
 }

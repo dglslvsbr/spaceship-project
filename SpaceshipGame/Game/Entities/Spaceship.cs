@@ -8,10 +8,10 @@ namespace SpaceshipGame.Game.Entities
         private float _x;
         private float _y;
         private const int _size = 48;
-        private float _speed;
+        private float _speed = 2;
         private int _collisions;
 
-        public Spaceship(string path, float x, float y, float speed)
+        public Spaceship(string path, float x, float y)
         {
             try
             {
@@ -23,7 +23,6 @@ namespace SpaceshipGame.Game.Entities
             }
             X = x;
             Y = y;
-            Speed = speed;
         }
 
         public Image Image
@@ -89,7 +88,7 @@ namespace SpaceshipGame.Game.Entities
             get => _collisions;
             set
             {
-                if (value >= 0 && value <= 5)
+                if (value <= 5)
                 {
                     _collisions = value;
                 }

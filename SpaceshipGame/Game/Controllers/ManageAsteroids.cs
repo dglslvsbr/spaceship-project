@@ -5,15 +5,40 @@ namespace SpaceshipGame.Game.Controllers
 {
     internal class ManageAsteroids
     {
+        private readonly Label _countAsteroid;
         private readonly List<Asteroid> _asteroids = new();
-        private int _quantidade = 5;
+        private int _quantidade = 10;
+        private float _speed = 1;
         private int _asteroidPassed;
 
-        public ManageAsteroids()
+        public ManageAsteroids(Label countAsteroid)
         {
+            _countAsteroid = countAsteroid;
         }
 
         public List<Asteroid> List() => _asteroids;
+
+        public int Quantity
+        {
+            get => _quantidade;
+            set => _quantidade = value;
+        }
+
+        public float Speed
+        {
+            get => _speed;
+            set
+            {
+                if (value >= 1 && value <= 5)
+                {
+                    _speed = value;
+                }
+                else
+                {
+                    throw new ArgumentException("A velocidade deve estar entre 1 e 5.");
+                }
+            }
+        }
 
         public int AsteroidPassed => _asteroidPassed;
 
@@ -31,7 +56,7 @@ namespace SpaceshipGame.Game.Controllers
                     x = random.Next(GameScreen.MapWidth - Asteroid.Size);
                     y = random.Next(-100, -50);
                 }
-                _asteroids.Add(new Asteroid(@"Images/48xAsteroide.ico", x, y, 1));
+                _asteroids.Add(new Asteroid(@"Images/48xAsteroide.ico", x, y));
             }
         }
 
@@ -39,8 +64,7 @@ namespace SpaceshipGame.Game.Controllers
         {
             foreach (var asteroid in _asteroids)
             {
-                if (asteroid.X + Asteroid.Size >= x && asteroid.X <= x + Asteroid.Size &&
-                    asteroid.Y + Asteroid.Size >= y && asteroid.Y <= y + Asteroid.Size)
+                if (asteroid.X == x && asteroid.Y == y)
                 {
                     return true;
                 }
@@ -52,11 +76,11 @@ namespace SpaceshipGame.Game.Controllers
         {
             foreach (var obj in _asteroids)
             {
-                obj.Y += obj.Speed;
+                obj.Y += _speed;
             }
             Remove();
-            NewAsteroids();
             CheckIfTheAsteroidPassed();
+            NewAsteroids();
         }
 
         private void NewAsteroids()
@@ -69,13 +93,7 @@ namespace SpaceshipGame.Game.Controllers
 
         private void Remove()
         {
-            for (int i = 0; i < _asteroids.Count; i++)
-            {
-                if (_asteroids[i].Y > 510)
-                {
-                    _asteroids.RemoveAt(i);
-                }
-            }
+            _asteroids.RemoveAll(x => x.Y > 510);
         }
 
         private void CheckIfTheAsteroidPassed()
@@ -86,6 +104,7 @@ namespace SpaceshipGame.Game.Controllers
                 {
                     _asteroidPassed++;
                     _asteroids.RemoveAt(i);
+                    _countAsteroid.Text = _asteroidPassed.ToString();
                 }
             }
         }

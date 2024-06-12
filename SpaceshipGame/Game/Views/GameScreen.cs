@@ -14,30 +14,31 @@ namespace SpaceshipGame.Game.Views
         private readonly ManageShots _manageShots;
         private readonly ManageCollisions _manageCollisions;
         private readonly EndGame _endGame;
-
-        private readonly System.Windows.Forms.Timer Timer;
+        private readonly ManageDifficulty _manageDifficulty;
+        private readonly System.Windows.Forms.Timer _timer;
 
         public GameScreen()
         {
             InitializeComponent();
-            _spaceship = new(@"Images/48xNave-Espacial.ico", 225, 410, 2);
+            _spaceship = new(@"Images/48xNave-Espacial.ico", 225, 410);
             _manageShots = new();
             _movement = new(_spaceship, _manageShots);
-            _manageAsteroids = new();
-            _manageCollisions = new(_spaceship, _manageShots, _manageAsteroids);
+            _manageAsteroids = new(Count_Asteroids);
+            _manageCollisions = new(_spaceship, _manageShots, _manageAsteroids, Count_Collision, Score);
             _endGame = new(_spaceship, _manageAsteroids, this);
+            _manageDifficulty = new(_spaceship, _manageShots, _manageAsteroids, Score);
 
-            Timer = new()
+            _timer = new()
             {
                 Interval = 10
             };
-            Timer.Tick += Time;
-            Timer.Start();
+            _timer.Tick += Time;
+            _timer.Start();
 
-            InitializeGame();
+            InitializeEvents();
         }
 
-        private void InitializeGame()
+        private void InitializeEvents()
         {
             DoubleBuffered = true;
             Paint += DrawOnScreen;
@@ -70,6 +71,7 @@ namespace SpaceshipGame.Game.Views
             _manageShots.AutomaticShots();
             _manageCollisions.CheckCollisions();
             _endGame.CheckEndOfGame();
+            _manageDifficulty.VerifyScore();
         }
     }
 }
