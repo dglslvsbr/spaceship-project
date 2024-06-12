@@ -43,6 +43,7 @@ namespace SpaceshipGame.Game.Views
             DoubleBuffered = true;
             Paint += DrawOnScreen;
             KeyDown += _movement.Move;
+            KeyUp += _movement.KeyUp;
         }
 
         private void DrawOnScreen(object sender, PaintEventArgs e)
