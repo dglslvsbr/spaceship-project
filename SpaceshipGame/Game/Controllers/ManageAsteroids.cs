@@ -1,22 +1,34 @@
-﻿using SpaceshipGame.Game.Entities;
+﻿using System.Timers;
+using SpaceshipGame.Game.Entities;
 using SpaceshipGame.Game.Views;
 
 namespace SpaceshipGame.Game.Controllers
 {
     internal class ManageAsteroids
     {
-        private readonly Label _countAsteroid;
+
         private readonly List<Asteroid> _asteroids = new();
+        private System.Timers.Timer _timer;
+        private readonly Label _countAsteroid;
         private int _quantidade = 10;
         private float _speed = 1;
         private int _asteroidPassed;
+        private int _generatedAsteroids;
 
         public ManageAsteroids(Label countAsteroid)
         {
             _countAsteroid = countAsteroid;
+            _timer = new System.Timers.Timer(300);
+            _timer.Elapsed += OnTimedEvent;
+            _timer.AutoReset = true;
         }
 
         public List<Asteroid> List() => _asteroids;
+
+        public void AddAsteroid(Asteroid asteroid)
+        {
+            _asteroids.Add(asteroid);
+        }
 
         public int Quantity
         {
@@ -33,10 +45,6 @@ namespace SpaceshipGame.Game.Controllers
                 {
                     _speed = value;
                 }
-                else
-                {
-                    throw new ArgumentException("A velocidade deve estar entre 1 e 5.");
-                }
             }
         }
 
@@ -44,27 +52,40 @@ namespace SpaceshipGame.Game.Controllers
 
         public void Generate()
         {
-            Random random = new();
-            int x;
-            int y;
-            for (int i = 0; i < _quantidade; i++)
+            _generatedAsteroids = 0;
+            _timer.Start();
+        }
+
+        private void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            if (_generatedAsteroids < _quantidade)
             {
-                x = -1;
-                y = -1;
-                while (IsPositionValid(x, y))
+                Random random = new();
+                int x;
+                int y;
+                do
                 {
                     x = random.Next(GameScreen.MapWidth - Asteroid.Size);
                     y = random.Next(-100, -50);
-                }
-                _asteroids.Add(new Asteroid(@"Images/48xAsteroide.ico", x, y));
+                } while (IsPositionValid(x, y));
+
+                AddAsteroid(new Asteroid(@"Images/48xAsteroide.ico", x, y));
+                _generatedAsteroids++;
+            }
+            else
+            {
+                _timer.Stop();
             }
         }
 
-        private bool IsPositionValid(int x, int y)
+        public bool IsPositionValid(int x, int y)
         {
-            foreach (var asteroid in _asteroids)
+            foreach (var obj in _asteroids)
             {
-                if (asteroid.X == x && asteroid.Y == y)
+                if (obj.X + Asteroid.Size >= x &&
+                    obj.X <= x + Asteroid.Size &&
+                    obj.Y + Asteroid.Size >= y &&
+                    obj.Y <= y + Asteroid.Size)
                 {
                     return true;
                 }
@@ -78,20 +99,12 @@ namespace SpaceshipGame.Game.Controllers
             {
                 obj.Y += _speed;
             }
-            Remove();
+            RemoveAsteroid();
             CheckIfTheAsteroidPassed();
             NewAsteroids();
         }
 
-        private void NewAsteroids()
-        {
-            if (_asteroids.Count == 0)
-            {
-                Generate();
-            }
-        }
-
-        private void Remove()
+        private void RemoveAsteroid()
         {
             _asteroids.RemoveAll(x => x.Y > 510);
         }
@@ -102,10 +115,23 @@ namespace SpaceshipGame.Game.Controllers
             {
                 if (_asteroids[i].Y > 500)
                 {
-                    _asteroidPassed++;
+                    IncreaseCountAsteroid();
                     _asteroids.RemoveAt(i);
-                    _countAsteroid.Text = _asteroidPassed.ToString();
                 }
+            }
+        }
+
+        private void IncreaseCountAsteroid()
+        {
+            _asteroidPassed++;
+            _countAsteroid.Text = _asteroidPassed.ToString();
+        }
+
+        private void NewAsteroids()
+        {
+            if (_asteroids.Count == 0)
+            {
+                Generate();
             }
         }
     }

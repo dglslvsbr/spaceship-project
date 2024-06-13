@@ -23,17 +23,19 @@ namespace SpaceshipGame.Game.Controllers
                 {
                     _speed = value;
                 }
-                else
-                {
-                    throw new ArgumentException("A velocidade deve estar entre 1 e 5.");
-                }
             }
         }
 
         public int Placar
         {
             get => _placar;
-            set => _placar = value;
+            set
+            {
+                if (value > 0)
+                {
+                    _placar = value;
+                }
+            }
         }
 
         public void AutomaticShots()
@@ -42,10 +44,10 @@ namespace SpaceshipGame.Game.Controllers
             {
                 obj.Y -= _speed;
             }
-            Remove();
+            RemoveShot();
         }
 
-        private void Remove()
+        private void RemoveShot()
         {
             _shots.RemoveAll(x => x.Y < 0);
         }
