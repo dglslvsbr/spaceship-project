@@ -51,7 +51,7 @@ namespace SpaceshipGame.Game.Entities
             get => _speed;
             set
             {
-                if (value >= 1 && value <= 5)
+                if (value >= 1)
                 {
                     _speed = value;
                 }

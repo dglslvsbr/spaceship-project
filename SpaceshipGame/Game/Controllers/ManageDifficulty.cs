@@ -31,12 +31,32 @@ namespace SpaceshipGame.Game.Controllers
         {
             if (score > Difficulty)
             {
-                _spaceship.Speed += 0.1f;
-                _manageShots.Speed += 0.1f;
-                _manageAsteroids.Speed += 0.1f;
-                _manageAsteroids.Quantity += 1;
+                AdjustSpaceshipSpeed(0.1f);
+                AdjustShotsSpeed(0.1f);
+                AdjustAsteroidsSpeed(0.1f);
+                IncreaseAsteroidsQuantity(1);
                 Difficulty += 100;
             }
+        }
+
+        private void AdjustSpaceshipSpeed(float increment)
+        {
+            _spaceship.Speed += increment;
+        }
+
+        private void AdjustShotsSpeed(float increment)
+        {
+            _manageShots.Speed += increment;
+        }
+
+        private void AdjustAsteroidsSpeed(float increment)
+        {
+            _manageAsteroids.Speed += increment;
+        }
+
+        private void IncreaseAsteroidsQuantity(int quantity)
+        {
+            _manageAsteroids.Quantity += quantity;
         }
     }
 }

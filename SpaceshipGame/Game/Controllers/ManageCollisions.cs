@@ -32,25 +32,20 @@ namespace SpaceshipGame.Game.Controllers
         {
             var shots = _manageShots.List();
             var asteroids = _manageAsteroids.List();
-            for (int i = shots.Count - 1; i >=0; i--)
+
+            for (int i = shots.Count - 1; i >= 0; i--)
             {
                 for (int j = asteroids.Count - 1; j >= 0; j--)
                 {
                     if (IsCollision(shots[i], asteroids[j]))
                     {
+                        IncreasePlacar();
                         shots.RemoveAt(i);
                         asteroids.RemoveAt(j);
-                        IncreasePlacar();
                         break;
                     }
                 }
             }
-        }
-
-        private void IncreasePlacar()
-        {
-            _manageShots.Placar += 10;
-            _score.Text = _manageShots.Placar.ToString();
         }
 
         private void CheckSpaceshipCollision()
@@ -64,12 +59,6 @@ namespace SpaceshipGame.Game.Controllers
                     asteroids.RemoveAt(i);
                 }
             }
-        }
-
-        private void IncreaseCollision()
-        {
-            _spaceship.Collisions++;
-            _countCollision.Text = _spaceship.Collisions.ToString();
         }
 
         private static bool IsCollision(Shot shot, Asteroid asteroid)
@@ -86,6 +75,18 @@ namespace SpaceshipGame.Game.Controllers
                    spaceship.X <= asteroid.X + Asteroid.Size &&
                    spaceship.Y + Spaceship.Size >= asteroid.Y &&
                    spaceship.Y <= asteroid.Y + Asteroid.Size;
+        }
+
+        private void IncreasePlacar()
+        {
+            _manageShots.Placar += 10;
+            _score.Text = _manageShots.Placar.ToString();
+        }
+
+        private void IncreaseCollision()
+        {
+            _spaceship.Collisions++;
+            _countCollision.Text = _spaceship.Collisions.ToString();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace SpaceshipGame.Game.Controllers
             get => _speed;
             set
             {
-                if (value >= 1 && value <= 5)
+                if (value >= 1)
                 {
                     _speed = value;
                 }
@@ -40,16 +40,15 @@ namespace SpaceshipGame.Game.Controllers
 
         public void AutomaticShots()
         {
-            foreach (var obj in _shots)
+            for (int i = _shots.Count - 1; i >= 0; i--)
             {
-                obj.Y -= _speed;
-            }
-            RemoveShot();
-        }
+                _shots[i].Y -= Speed;
 
-        private void RemoveShot()
-        {
-            _shots.RemoveAll(x => x.Y < 0);
+                if (_shots[i].Y < 0)
+                {
+                    _shots.RemoveAt(i);
+                }
+            }
         }
     }
 }

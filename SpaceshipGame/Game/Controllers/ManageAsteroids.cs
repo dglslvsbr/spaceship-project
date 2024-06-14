@@ -8,7 +8,7 @@ namespace SpaceshipGame.Game.Controllers
     {
 
         private readonly List<Asteroid> _asteroids = new();
-        private System.Timers.Timer _timer;
+        private readonly System.Timers.Timer _timer;
         private readonly Label _countAsteroid;
         private int _quantidade = 10;
         private float _speed = 1;
@@ -41,7 +41,7 @@ namespace SpaceshipGame.Game.Controllers
             get => _speed;
             set
             {
-                if (value >= 1 && value <= 5)
+                if (value >= 1)
                 {
                     _speed = value;
                 }
@@ -95,18 +95,17 @@ namespace SpaceshipGame.Game.Controllers
 
         public void Movement()
         {
-            foreach (var obj in _asteroids)
+            for (int i = _asteroids.Count - 1; i >= 0; i--)
             {
-                obj.Y += _speed;
+                _asteroids[i].Y += Speed;
+
+                if (_asteroids[i].Y > 510)
+                {
+                    _asteroids.RemoveAt(i);
+                }
             }
-            RemoveAsteroid();
             CheckIfTheAsteroidPassed();
             NewAsteroids();
-        }
-
-        private void RemoveAsteroid()
-        {
-            _asteroids.RemoveAll(x => x.Y > 510);
         }
 
         private void CheckIfTheAsteroidPassed()

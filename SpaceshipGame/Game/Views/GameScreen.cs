@@ -52,13 +52,15 @@ namespace SpaceshipGame.Game.Views
             e.Graphics.DrawImage(_spaceship.Image, _spaceship.X, _spaceship.Y, Spaceship.Size, Spaceship.Size);
 
             // Asteroides
-            foreach (var obj in _manageAsteroids.List())
+            var asteroids = _manageAsteroids.List();
+            foreach (var obj in asteroids)
             {
                 e.Graphics.DrawImage(obj.Image, obj.X, obj.Y, Asteroid.Size, Asteroid.Size);
             }
 
             // Disparos
-            foreach (var obj in _manageShots.List())
+            var shots = _manageShots.List();
+            foreach (var obj in shots)
             {
                 e.Graphics.DrawImage(obj.Image, obj.X, obj.Y, Shot.Size, Shot.Size);
             }
