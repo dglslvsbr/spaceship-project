@@ -50,7 +50,36 @@ namespace SpaceshipGame.Game.Controllers
 
         public int AsteroidPassed => _asteroidPassed;
 
-        public void Generate()
+        public void Movement()
+        {
+            for (int i = _asteroids.Count - 1; i >= 0; i--)
+            {
+                _asteroids[i].Y += Speed;
+
+                if (_asteroids[i].Y > 500)
+                {
+                    IncreaseCountAsteroid();
+                    _asteroids.RemoveAt(i);
+                }
+            }
+            NewAsteroids();
+        }
+
+        private void IncreaseCountAsteroid()
+        {
+            _asteroidPassed++;
+            _countAsteroid.Text = _asteroidPassed.ToString();
+        }
+
+        private void NewAsteroids()
+        {
+            if (_asteroids.Count == 0)
+            {
+                Generate();
+            }
+        }
+
+        private void Generate()
         {
             _generatedAsteroids = 0;
             _timer.Start();
@@ -78,7 +107,7 @@ namespace SpaceshipGame.Game.Controllers
             }
         }
 
-        public bool IsPositionValid(int x, int y)
+        private bool IsPositionValid(int x, int y)
         {
             foreach (var obj in _asteroids)
             {
@@ -91,47 +120,6 @@ namespace SpaceshipGame.Game.Controllers
                 }
             }
             return false;
-        }
-
-        public void Movement()
-        {
-            for (int i = _asteroids.Count - 1; i >= 0; i--)
-            {
-                _asteroids[i].Y += Speed;
-
-                if (_asteroids[i].Y > 510)
-                {
-                    _asteroids.RemoveAt(i);
-                }
-            }
-            CheckIfTheAsteroidPassed();
-            NewAsteroids();
-        }
-
-        private void CheckIfTheAsteroidPassed()
-        {
-            for (int i = _asteroids.Count - 1; i >= 0; i--)
-            {
-                if (_asteroids[i].Y > 500)
-                {
-                    IncreaseCountAsteroid();
-                    _asteroids.RemoveAt(i);
-                }
-            }
-        }
-
-        private void IncreaseCountAsteroid()
-        {
-            _asteroidPassed++;
-            _countAsteroid.Text = _asteroidPassed.ToString();
-        }
-
-        private void NewAsteroids()
-        {
-            if (_asteroids.Count == 0)
-            {
-                Generate();
-            }
         }
     }
 }

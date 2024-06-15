@@ -21,8 +21,8 @@ namespace SpaceshipGame.Game.Views
         {
             InitializeComponent();
             _spaceship = new(@"Images/48xNave-Espacial.ico", 225, 410);
-            _manageShots = new();
-            _movement = new(_spaceship, _manageShots);
+            _manageShots = new(_spaceship);
+            _movement = new(_spaceship);
             _manageAsteroids = new(Count_Asteroids);
             _manageCollisions = new(_spaceship, _manageShots, _manageAsteroids, Count_Collision, Score);
             _endGame = new(_spaceship, _manageAsteroids, this);
@@ -43,7 +43,9 @@ namespace SpaceshipGame.Game.Views
             DoubleBuffered = true;
             Paint += DrawOnScreen;
             KeyDown += _movement.Move;
-            KeyUp += _movement.KeyUp;
+            KeyDown += _manageShots.Shoot;
+            KeyUp += _manageShots.KeyUp;
+          
         }
 
         private void DrawOnScreen(object sender, PaintEventArgs e)

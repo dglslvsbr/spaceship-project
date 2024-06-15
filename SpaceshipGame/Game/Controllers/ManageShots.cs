@@ -5,14 +5,22 @@ namespace SpaceshipGame.Game.Controllers
     internal class ManageShots
     {
         private readonly List<Shot> _shots = new();
+        private readonly Spaceship _spaceship;
+        private bool _holdDown = true;
         private float _speed = 2;
         private int _placar;
 
-        public ManageShots()
+        public ManageShots(Spaceship spaceship)
         {
+            _spaceship = spaceship;
         }
 
         public List<Shot> List() => _shots;
+
+        public void Add(Shot shot)
+        {
+            _shots.Add(shot);
+        }
 
         public float Speed
         {
@@ -38,16 +46,47 @@ namespace SpaceshipGame.Game.Controllers
             }
         }
 
+        public void Shoot(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.W:
+                    if (_holdDown)
+                    {
+                        _holdDown = false;
+                        Add(new Shot(@"Images/32xBala.png", _spaceship.X + 21, _spaceship.Y));
+                    }
+                    break;
+            }
+        }
+
+        public void KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.W:
+                    _holdDown = true;
+                    break;
+            }
+        }
+
         public void AutomaticShots()
         {
-            for (int i = _shots.Count - 1; i >= 0; i--)
+            var shotsCopy = new List<Shot>(_shots);
+            var indiceToRemove = new List<int>();
+
+            for (int i = shotsCopy.Count - 1; i >= 0; i--)
             {
                 _shots[i].Y -= Speed;
 
                 if (_shots[i].Y < 0)
                 {
-                    _shots.RemoveAt(i);
+                    indiceToRemove.Add(i);
                 }
+            }
+            foreach (var index in indiceToRemove)
+            {
+                _shots.RemoveAt(index);
             }
         }
     }

@@ -6,18 +6,14 @@ namespace SpaceshipGame.Game.Controllers
     {
         private char _direction;
         private readonly Spaceship _spaceship;
-        private readonly ManageShots _manageShots;
-        private bool _holdDown = true;
 
-        public Movement(Spaceship spaceship, ManageShots manageShots)
+        public Movement(Spaceship spaceship)
         {
             _spaceship = spaceship;
-            _manageShots = manageShots;
         }
 
         public void Move(object sender, KeyEventArgs e)
         {
-            var list = _manageShots.List();
             switch (e.KeyCode)
             {
                 case Keys.A:
@@ -25,23 +21,6 @@ namespace SpaceshipGame.Game.Controllers
                     break;
                 case Keys.D:
                     _direction = 'D';
-                    break;
-                case Keys.W:
-                    if (_holdDown)
-                    {
-                        _holdDown = false;
-                        list.Add(new Shot(@"Images/32xBala.png", _spaceship.X + 21, _spaceship.Y));  
-                    }
-                    break;
-            }
-        }
-
-        public void KeyUp(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.W:
-                    _holdDown = true;
                     break;
             }
         }
