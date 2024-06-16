@@ -52,16 +52,15 @@ namespace SpaceshipGame.Game.Controllers
 
         public void Movement()
         {
-            for (int i = _asteroids.Count - 1; i >= 0; i--)
+            for (int i = 0; i < _asteroids.Count; i++)
             {
                 _asteroids[i].Y += Speed;
-
                 if (_asteroids[i].Y > 500)
                 {
                     IncreaseCountAsteroid();
-                    _asteroids.RemoveAt(i);
                 }
             }
+            _asteroids.RemoveAll(x => x.Y > 500);
             NewAsteroids();
         }
 

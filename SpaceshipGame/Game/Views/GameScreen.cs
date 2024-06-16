@@ -45,7 +45,6 @@ namespace SpaceshipGame.Game.Views
             KeyDown += _movement.Move;
             KeyDown += _manageShots.Shoot;
             KeyUp += _manageShots.KeyUp;
-          
         }
 
         private void DrawOnScreen(object sender, PaintEventArgs e)
@@ -55,15 +54,17 @@ namespace SpaceshipGame.Game.Views
 
             // Asteroides
             var asteroids = _manageAsteroids.List();
-            foreach (var obj in asteroids)
+            for (int i = asteroids.Count - 1; i >= 0; i--)
             {
+                var obj = asteroids[i];
                 e.Graphics.DrawImage(obj.Image, obj.X, obj.Y, Asteroid.Size, Asteroid.Size);
             }
 
             // Disparos
             var shots = _manageShots.List();
-            foreach (var obj in shots)
+            for (int i = shots.Count - 1; i >= 0; i--)
             {
+                var obj = shots[i];
                 e.Graphics.DrawImage(obj.Image, obj.X, obj.Y, Shot.Size, Shot.Size);
             }
         }

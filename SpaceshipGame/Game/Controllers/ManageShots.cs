@@ -72,22 +72,11 @@ namespace SpaceshipGame.Game.Controllers
 
         public void AutomaticShots()
         {
-            var shotsCopy = new List<Shot>(_shots);
-            var indiceToRemove = new List<int>();
-
-            for (int i = shotsCopy.Count - 1; i >= 0; i--)
+            for (int i = 0; i < _shots.Count; i++)
             {
                 _shots[i].Y -= Speed;
-
-                if (_shots[i].Y < 0)
-                {
-                    indiceToRemove.Add(i);
-                }
             }
-            foreach (var index in indiceToRemove)
-            {
-                _shots.RemoveAt(index);
-            }
+            _shots.RemoveAll(x => x.Y < 0);
         }
     }
 }

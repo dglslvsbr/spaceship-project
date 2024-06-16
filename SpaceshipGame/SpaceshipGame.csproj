@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>48xNave-Espacial.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="48xNave-Espacial.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Update="Images\32xBala.png">
